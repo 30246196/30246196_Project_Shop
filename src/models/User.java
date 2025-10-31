@@ -41,7 +41,8 @@ public class User {
     
     // Getters and Setters   (  ctrl + space bar)
     
-    //                      username
+    // ***** username
+    
     // getter username
     public String getUsername() {
         return username;
@@ -51,7 +52,8 @@ public class User {
         this.username = username;
     }
     
-    //                   password
+    // *****  password
+    
     //getter password
     public String getPassword()
     {
@@ -63,7 +65,7 @@ public class User {
         this.password = password;
     }
     
-    //                  firstName
+    // ******* firstName
     // getter firstName
     public String getFirstName()
     {
@@ -75,7 +77,7 @@ public class User {
         this.firstName = firstName;
     }
     
-    //                  lastName
+    //  *****      lastName
     // getter lastName
     public String getLastName()
     {
