@@ -37,7 +37,7 @@ public class Product {
     private String productType; // getter and setter
     
     // added to store the extra attribute in String to later change the type.
-    private String extraAttribute;
+   // private String extraAttribute;
     
     // 3. Constructors
     
@@ -103,10 +103,10 @@ public class Product {
     public String getProductType() {
         return productType;
     }
-    
-    public String getExtraAttribute() {
-        return productType;
-    }
+//    
+//    public String getExtraAttribute() {
+//        return productType;
+//    }
     
     // Setters         a setter does not return anything, hence void
 
@@ -129,10 +129,10 @@ public class Product {
     public void setProductType(String productType) {
         this.productType = productType;
     }
-    
-    public void setExtraAttribute(String extraAttribute) {
-        this.extraAttribute = extraAttribute;
-    } 
+//    
+//    public void setExtraAttribute(String extraAttribute) {
+//        this.extraAttribute = extraAttribute;
+//    } 
     
     
     

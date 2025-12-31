@@ -421,46 +421,61 @@ public class DBManager {
     {
         String extraAttributeSQL = "";
         
-        String category = p.getProductType();
+        //String category = p.getProductType();
         
-        switch (category) 
+        switch (p.getClass().getName()) 
             {
-           case "Heat Pump":
+           case "models.HeatPump":
                HeatPump hp = (HeatPump)p; 
-               extraAttributeSQL = "EfficiencyRating = '" + hp.getEfficiencyRating() + "',";
+               extraAttributeSQL = "EfficiencyRating = '" + hp.getEfficiencyRating() + "'";
                break;
 
-           case "Solar Panel":
+           case "models.SolarPanel":
                SolarPanel sp = (SolarPanel)p;
-               extraAttributeSQL = "WattageOutput = '" + sp.getWattageOutput() + "',";
+               extraAttributeSQL = "WattageOutput = '" + sp.getWattageOutput() + "'";
                break;
               
-            case "Replacement Part":
+            case "models.ReplacementPart":
                ReplacementPart rp = (ReplacementPart)p;
-               extraAttributeSQL = "PartFor = '" + rp.getPartFor() + "',";
+               extraAttributeSQL = "PartFor = '" + rp.getPartFor() + "'";
                 break;
 
             default:
-                System.out.println("Unknown category: " + category);
+                System.out.println("Unknown category: " + p.getClass().getName());
                 break;
             }  
         
-       
+       System.out.println(extraAttributeSQL);
         try
         {
+          System.out.println("driver = " + driver);  
           Class.forName(driver);
+          
+          
+          System.out.println("connectionString = " + connectionString);
           Connection conn = DriverManager.getConnection(connectionString);
           //conn.prepareStatement() TODO
           Statement stmt = conn.createStatement();
+          
+          //check:
+          
+            System.out.println("p == null ? " + (p == null));
+            if (p != null) {
+                System.out.println("productId = " + p.getProductId());
+                System.out.println("productName = " + p.getProductName());
+                System.out.println("price = " + p.getPrice());
+                System.out.println("stock = " + p.getStockLevel());
+            }
+
+          
+          
+          
           stmt.executeUpdate("UPDATE Products SET "
           + "ProductName = '" + p.getProductName() + "',"
           + "Price = '" + p.getPrice() + "',"
           + "StockLevel = '" + p.getStockLevel() + "',"
-          + "ProductType = '" + p.getProductType() + "',"
-          + "Extra = '" + p.getExtraAttribute() + "',"
           + extraAttributeSQL                
-         
-          + "WHERE ProductID = '" + p.getProductId() +"'");
+          + " WHERE ProductID = '" + p.getProductId() + "'");
          
          
         }
@@ -468,6 +483,8 @@ public class DBManager {
         {
             System.out.println("Error Editing Product: " + ex.getMessage());
         }
+        
+        
     }
 }
 

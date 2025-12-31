@@ -246,38 +246,38 @@ public class EditProduct extends javax.swing.JFrame {
         productToEdit.setProductType(productType);
         
         // add the extra Attribute in the corespondent : SolaPanel, Heat Pump or Replacement Part
-        productToEdit.setExtraAttribute(extra);
+        //productToEdit.setExtraAttribute(extra);
 
         DBManager db = new DBManager();
         
         // Product types: SolarPanel, Heat Pump and Replacement Part
-        switch(productToEdit.getProductType())
+        switch(productToEdit.getClass().getName())
         {
-            case "Solar Panel":
+            case "models.SolarPanel":
                 
                 SolarPanel sp = (SolarPanel)productToEdit;
                 
                 int wattageOutput = Integer.parseInt(txtExtraAttribute.getText());
                 sp.setWattageOutput(wattageOutput);
                 
-                //DBManager db = new DBManager();// Create a new DBManager instance to interact with the database.
+                db = new DBManager();// Create a new DBManager instance to interact with the database.
                 db.editProduct(sp);// create editProduct method in DBManager
                 
                 break;
                 
-            case "Heat Pump":
+            case "models.HeatPump":
                 
                 HeatPump hp = (HeatPump)productToEdit;
                 
                 double efficiencyRating = Double.parseDouble(txtExtraAttribute.getText());
                 hp.setEfficiencyRating(efficiencyRating); 
                 
-                //DBManager db = new DBManager();
+                db = new DBManager();
                 db.editProduct(hp);
                 
                 break;
                 
-            case "Replacement Part":
+            case "models.ReplacementPart":
                 
                 ReplacementPart rp = (ReplacementPart)productToEdit;
                 
@@ -285,6 +285,7 @@ public class EditProduct extends javax.swing.JFrame {
                 rp.setPartFor(partFor);
                 
                 //DBManager db = new DBManager();
+                db = new DBManager();
                 db.editProduct(rp);
                 break;
         }
